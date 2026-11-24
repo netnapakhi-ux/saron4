@@ -1,0 +1,580 @@
+/* ==========================================================
+   SARON — style.css
+   Premium minimal theme: white / cream / deep beige + bronze
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Serif+Thai:wght@300;400;500;600&display=swap");
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Base palette */
+  --white: #ffffff;
+  --cream: #faf6ef;
+  --cream-deep: #f1e9dc;
+  --beige: #d9c9b0;
+  --beige-dark: #8b7355;
+  --ink: #2b2420;          /* dark warm brown, replaces pure black */
+  --ink-soft: #5c5047;
+  --line: rgba(43, 36, 32, 0.28);   /* thin, soft dark border */
+  --line-soft: rgba(43, 36, 32, 0.12);
+
+  /* Accent: soft gold / bronze */
+  --accent: #a67c52;
+  --accent-dark: #86603a;
+  --accent-light: #c9a97c;
+
+  /* Mood colors — small touches only */
+  --mood-makrut: #2f5d3a;    /* มะกรูด: dark green */
+  --mood-manao: #8fbf7a;     /* มะนาว: light green */
+  --mood-ounchan: #7b5ea7;   /* อัญชัน: medium purple */
+
+  /* Typography */
+  --font-serif: "Cormorant Garamond", "Noto Serif Thai", "Times New Roman", serif;
+  --font-thai-serif: "Noto Serif Thai", "Cormorant Garamond", serif;
+  --font-sans: "Noto Sans Thai", "Helvetica Neue", Arial, sans-serif;
+
+  /* Spacing scale (generous) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+  --space-7: 9rem;
+
+  --container: 1120px;
+  --radius: 2px;
+  --transition: 0.35s ease;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-thai-serif);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.6rem); }
+h2 { font-size: clamp(1.5rem, 3.2vw, 2.3rem); }
+h3 { font-size: 1.2rem; }
+
+p {
+  margin: 0 0 var(--space-2);
+  color: var(--ink-soft);
+}
+
+::selection {
+  background: var(--accent-light);
+  color: var(--white);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+section,
+.section {
+  padding: var(--space-6) 0;
+}
+
+.section-alt {
+  background: var(--white);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+/* thin bronze rule under section titles */
+.section-title::after,
+.accent-line::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin: var(--space-2) auto 0;
+  background: var(--accent);
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 246, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.brand,
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-4);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+}
+
+.nav a {
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover,
+.nav a.active {
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Buttons (thin line, soft dark) ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.95rem 2.6rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition);
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn-accent {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.btn-accent:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-6) var(--space-3);
+  text-align: center;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+}
+
+.hero-inner {
+  max-width: 760px;
+}
+
+.hero p {
+  margin: var(--space-3) auto var(--space-4);
+  max-width: 560px;
+  font-size: 1.05rem;
+}
+
+/* ---------- Mood / category cards ---------- */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.mood-card {
+  display: block;
+  padding: var(--space-4) var(--space-3);
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  text-align: center;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.mood-card:hover {
+  border-color: var(--line);
+  transform: translateY(-3px);
+}
+
+/* ---------- Mood color touches (dot / underline / icon only) ---------- */
+.mood-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.6em;
+  border-radius: 50%;
+  background: var(--mood-color, var(--accent));
+  vertical-align: middle;
+}
+
+.mood-card h3::after,
+.product-card h3::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin: var(--space-1) auto 0;
+  background: var(--mood-color, var(--accent));
+}
+
+/* Mood assignments.
+   Use either data-mood="..." or a class on the card/element.
+   products.json moods: fresh = มะกรูด, confident = มะนาว, romance = อัญชัน */
+[data-mood="fresh"],    .mood-fresh,    .mood-makrut  { --mood-color: var(--mood-makrut); }
+[data-mood="confident"],.mood-confident,.mood-manao   { --mood-color: var(--mood-manao); }
+[data-mood="romance"],  .mood-romance,  .mood-ounchan { --mood-color: var(--mood-ounchan); }
+[data-mood="sweet"],    .mood-sweet                   { --mood-color: var(--accent); }
+
+/* ---------- Filter bar ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.filter-btn {
+  padding: 0.5rem 0.2rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.filter-btn:hover {
+  color: var(--ink);
+}
+
+.filter-btn.active {
+  color: var(--ink);
+  border-bottom-color: var(--mood-color, var(--accent));
+}
+
+/* ---------- Product cards ---------- */
+.product-grid,
+#product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4) var(--space-3);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  text-align: center;
+  transition: border-color var(--transition);
+}
+
+.product-card:hover {
+  border-color: var(--line);
+}
+
+.product-card .product-image {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  width: 100%;
+  background: var(--cream-deep);
+}
+
+.product-card .product-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-3);
+}
+
+.product-card .product-meta {
+  margin-bottom: var(--space-1);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+
+.product-card .product-desc {
+  flex: 1;
+  margin-bottom: var(--space-2);
+  font-size: 0.9rem;
+}
+
+.price {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--accent-dark);
+}
+
+/* ---------- Forms ---------- */
+.form-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-4);
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+}
+
+.form-group {
+  margin-bottom: var(--space-3);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.85rem 0;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  transition: border-color var(--transition);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+input[readonly] {
+  color: var(--accent-dark);
+}
+
+/* ---------- Tables (admin) ---------- */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: top;
+}
+
+th {
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: var(--beige-dark);
+  background: var(--cream);
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background: var(--cream);
+}
+
+/* ---------- Thank-you / message page ---------- */
+.message-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: var(--space-5) var(--space-3);
+  text-align: center;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: var(--space-5) 0;
+  background: var(--ink);
+  color: var(--beige);
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+}
+
+.site-footer a:hover {
+  color: var(--accent-light);
+}
+
+/* ---------- Utilities ---------- */
+.text-center { text-align: center; }
+.mt-4 { margin-top: var(--space-4); }
+.mb-4 { margin-bottom: var(--space-4); }
+.hidden { display: none !important; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  section,
+  .section {
+    padding: var(--space-5) 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  section,
+  .section {
+    padding: var(--space-4) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-2);
+  }
+
+  .site-header .container {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .nav {
+    gap: var(--space-3);
+  }
+
+  .hero {
+    min-height: 90vh;
+  }
+
+  .btn {
+    padding: 0.9rem 2rem;
+  }
+
+  .form-wrap {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .product-grid,
+  #product-list {
+    grid-template-columns: 1fr;
+  }
+
+  th,
+  td {
+    padding: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
